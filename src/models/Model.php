@@ -58,8 +58,8 @@ class Model {
         $sql = '';
         if(count($filters) > 0){
             $sql .= "WHERE 1 = 1";
-            foreach($filters as $columns => $value) {
-            $sql .= " AND ${columns} = " . static::getFormatedValue($value);
+            foreach($filters as $column => $value) {
+            $sql .= " AND ${column} = " . static::getFormatedValue($value);
             }
         }
         return $sql;
@@ -69,7 +69,7 @@ class Model {
         if(is_null($value)) {
             return "null";
         } elseif(gettype($value) === 'string') {
-            return "${value}";
+            return "'${value}'";
         }else{
             return $value;
         }

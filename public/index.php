@@ -1,6 +1,7 @@
 <?php
 
 require_once(dirname(__FILE__, 2) . '/src/config/config.php');
+require_once(dirname(__FILE__, 2) . '/src/models/User.php');
 // require_once(VIEW_PATH . '/login.php');
 
 
@@ -18,10 +19,10 @@ try{
     echo 'Problema no login';
 }
 
-// $user = new User(['name'=>'Guto', 'email'=>'email@email.com']);
-// // echo $user->getSelect('id, name');
+$user = new User(['name'=>'Guto', 'email'=>'email@email.com']);
+// echo $user->getSelect('id, name');
 
-// print_r(User::get(['name'=> 'Chaves'], 'id, name, email')); 
+print_r(User::get(['name'=> 'Chaves'], 'id, name, email')); 
 
 // echo '<br>';
 // print_r(User::get([], 'name'));
