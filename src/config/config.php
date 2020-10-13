@@ -1,7 +1,7 @@
 <?php
 
 date_default_timezone_set('America/Sao_Paulo');
-setlocale(LC_TIME,'pt_br.uft-8', 'portuguese');
+setlocale(LC_TIME,'ptb.utf-8');
 
 //Pastas
 define('MODEL_PATH', realpath(dirname(__FILE__) . '/../models'));
