@@ -12,14 +12,14 @@ if($exception) {
 
 $alertType = '';
 
-if($message['type'] === 'error') {
-    $alertType = 'danger';
+if(isset($message['type']) === 'error') {
+   $alertType = 'danger';
 } else {
     $alertType = 'success';
 }
 ?>
 
-<?php if($message): ?>
+<?php if(isset($message)): ?>
     <div role="alert"
         class="my-1 alert alert-<?= $alertType ?>">
         <?= $message['message'] ?>

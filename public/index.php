@@ -4,10 +4,19 @@ require_once(dirname(__FILE__, 2) . '/src/config/config.php');
 
 $uri = urldecode($_SERVER['REQUEST_URI']);
 
+
 if($uri === '/' || $uri === '' || $uri = '/index.php') {
     $uri = 'login.php';
 }
 require_once(CONTROLLER_PATH . "/{$uri}");
+
+
+// $sql = 'select * from users';
+// $result = Database::getResultFromQuery($sql);
+// while($row=$result->fetch_assoc()) {
+//     print_r($row);
+//     echo '<br>';
+// }
 
 
 // require_once(MODEL_PATH . '/Login.php');
