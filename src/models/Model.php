@@ -17,13 +17,17 @@ class Model {
         }
     }
     
-    public function __get($key){
+    public function __get($key) {
         return $this->values[$key];
     }
 
-    public function __set($key, $value){
+    public function __set($key, $value) {
         $this->values[$key] = $value;
     }
+
+    public function getValues() {
+        return $this->values;
+    }        
 
     public static function getOne($filters = [], $columns = '*') {
         $class = get_called_class();
@@ -43,8 +47,10 @@ class Model {
         return $objects;
     }
 
-    public static function getResultSetFromSelect($filters = [], $columns = '*'){
-        $sql = "SELECT ${columns} FROM " . static::$tableName . static::getFilters($filters);
+    public static function getResultSetFromSelect($filters = [], $columns = '*') {
+        $sql = "SELECT ${columns} FROM " 
+            . static::$tableName 
+            . static::getFilters($filters);
         $result = Database::getResultFromQuery($sql);
         if($result->num_rows === 0) {
             return null;
@@ -55,7 +61,8 @@ class Model {
     }
 
     public function save() {
-        $sql = "INSERT INTO " . static::$tableName . " (" . implode(",", static::$columns) . ") VALUES (";
+        $sql = "INSERT INTO " . static::$tableName . " ("
+             . implode(",", static::$columns) . ") VALUES (";
         foreach(static::$columns as $col) {
             $sql .= static::getFormatedValue($this->$col) . ",";
         }
@@ -70,7 +77,7 @@ class Model {
             $sql .= " WHERE 1 = 1";
             foreach($filters as $column => $value) {
                 if($column == 'raw') {
-                    $sql .= " AND ${value}";
+                    $sql .= " AND {$value}";
                 } else {
                     $sql .= " AND ${column} = " . static::getFormatedValue($value);
                 }

@@ -4,7 +4,7 @@ loaderModel('WorkingHours');
 Database::executeSQL('DELETE FROM working_hours');
 Database::executeSQL('DELETE FROM users WHERE id > 5');
 
-function getDayTemplateByOdds ($regularRate, $extraRate, $lazyRate) {
+function getDayTemplateByOdds($regularRate, $extraRate, $lazyRate) {
 
     $regularDayTemplate = [
         'time1' => '08:00:00',
@@ -31,9 +31,9 @@ function getDayTemplateByOdds ($regularRate, $extraRate, $lazyRate) {
     ];
 
     $value = rand(0, 100);
-    if($value <= $regularRate){
+    if($value <= $regularRate) {
         return $regularDayTemplate;
-    } elseif($value <= $regularRate + $extraRate){
+    } elseif($value <= $regularRate + $extraRate) {
         return $extraHourDayTemplate;
     } else {
         return $lazyDayTemplate;
@@ -57,6 +57,9 @@ function populateWorkingHours($userId, $initialDate, $regularRate, $extraRate, $
     }
 }
 
+$lastMonth = strtotime('first day of last month');
 populateWorkingHours(1, date('Y-m-1'), 70, 20, 10);
+populateWorkingHours(3, date('Y-m-d', $lastMonth), 20, 75, 5);
+populateWorkingHours(4, date('Y-m-d', $lastMonth), 20, 10, 70);
 
 echo 'Tudo ok';
