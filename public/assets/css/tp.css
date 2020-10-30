@@ -49,6 +49,10 @@ header.header .menu-toggle {
 header.header .spacer {
     flex: 1;
 }
+header.header .dropdown {
+    position: relative;
+    height: 100%;
+}
 
 header.header .dropdown-button {
     display: flex;
@@ -191,7 +195,7 @@ main.content .content-title {
     border-bottom: 1px solid #CCC;
 }
 
-main.content .content-title {
+main.content .content-title .icon {
     font-size: 3rem;
 }
 
@@ -222,4 +226,33 @@ footer.footer {
 
 .record {
     font-size: 1.8rem;
+}
+
+.summary-boxes {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.summary-box {
+    flex-grow: 1;
+    display: flex;
+    border-radius: 10px;
+    margin: 10px;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    min-width: 200px;
+}
+
+.summary-box .icon {
+    font-size: 3.5rem;
+}
+
+.summary-box .title {
+    font-size: 1.5rem;
+}
+
+.summary-box .value {
+    font-size: 2.0rem;
 }

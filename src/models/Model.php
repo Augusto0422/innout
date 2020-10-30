@@ -5,15 +5,23 @@ class Model {
     protected static $columns = [];
     protected $values = [];
 
-    function __construct($arr) {
-      $this->loadFromArray($arr);
+    function __construct($arr, $sanitize = true) {
+      $this->loadFromArray($arr, $sanitize);
     }
 
-    public function loadFromArray($arr) {
-        if($arr) {
+    public function loadFromArray($arr, $sanitize= true) {
+        if($arr) { 
+            // $conn = Database::getConnection();
             foreach($arr as $key => $value){
-                $this->$key = $value;
+                $cleanValue = $value;
+                if($sanitize && isset($cleanValue)){
+                    $cleanValue = strip_tags(trim($cleanValue));
+                    $cleanValue = htmlentities($cleanValue, ENT_NOQUOTES);
+                    // $$cleanValue = mysqli_real_escape_string($conn, $cleanValue);     
+                }
+                $this->$key = $cleanValue;
             }
+            // $conn->close();
         }
     }
     
@@ -47,17 +55,17 @@ class Model {
         return $objects;
     }
 
-    public static function getResultSetFromSelect($filters = [], $columns = '*') {
-        $sql = "SELECT ${columns} FROM " 
-            . static::$tableName 
+    public static function getResultSetFromSelect($filters = [], $columns = '*')
+    {
+        $sql = "SELECT ${columns} FROM "
+            . static::$tableName
             . static::getFilters($filters);
         $result = Database::getResultFromQuery($sql);
-        if($result->num_rows === 0) {
+        if ($result->num_rows === 0) {
             return null;
         } else {
             return $result;
         }
-        
     }
 
     public function insert() {
@@ -78,6 +86,21 @@ class Model {
         }
         $sql[strlen($sql) - 1] = ' ';
         $sql .= "WHERE id = {$this->id}";
+        Database::executeSQL($sql);
+    }
+
+    public static function getCount($filters=[]) {
+        $result= static::getResultSetFromSelect(
+            $filters, 'count(*) as count');
+        return $result->fetch_assoc()['count'];
+    }
+
+    public function delete() {
+        static::deleteById($this->id);
+    }
+
+    public static function deleteById($id) {
+        $sql = "DELETE FROM " . static::$tableName . " WHERE id = {$id}";
         Database::executeSQL($sql);
     }
 

@@ -17,7 +17,7 @@ if(isset($_SESSION['message']))
 
 $alertType = '';
 
-if(isset($message['type']) === 'error') {
+if (isset($message['type']) && $message['type'] === 'error') {
    $alertType = 'danger';
 } else {
     $alertType = 'success';
