@@ -44,14 +44,14 @@ class User extends Model {
             $errors['email'] = 'E-mail inválido.';
         }
 
-        if(!$this->start_date){
-            $errors['start_date'] = 'Data de admissão é um campo obrigatório';
+        if(!$this->start_date) {
+            $errors['start_date'] = 'Data de Admissão é um campo obrigatório';
         } elseif(!DateTime::createFromFormat('Y-m-d', $this->start_date)) {
-            $errors['start_date'] = 'Data de admissão deve seguir o padrão dd/mm/aaaa.';
+            $errors['start_date'] = 'Data de Admissão deve seguir o padrão dd/mm/aaaa.';
         }
 
         if($this->end_date && !DateTime::createFromFormat('Y-m-d', $this->end_date)) {
-            $errors['end_date'] = 'Data de desligamento deve seguir o padrão dd/mm/aaaa.';
+            $errors['end_date'] = 'Data de Desligamento deve seguir o padrão dd/mm/aaaa.';
         }
 
         if(!$this->password) {
@@ -68,7 +68,7 @@ class User extends Model {
             $errors['confirm_password'] = 'Senhas divergentes.';
         }
         
-        if(count($errors)>0) {
+        if(count($errors) > 0) {
             throw new ValidationException($errors);
         }
     }

@@ -16,7 +16,7 @@ try {
     }
     
     $records->innout($currentTime);
-    addSucessMsg('Ponto inserido com sucesso.');   
+    addSuccessMsg('Ponto inserido com sucesso.');   
 } catch(AppException $e) {
     addErrorMsg($e->getMessage());
 }

@@ -1,15 +1,15 @@
 <?php
 
-function addSucessMsg($msg) {
+function addSuccessMsg($msg) {
     $_SESSION['message'] = [
-        'type '=>'sucess',
-        'message'=> $msg
+        'type' => 'success',
+        'message' => $msg
     ]; 
 }
 
 function addErrorMsg($msg) {
     $_SESSION['message'] = [
-        'type'=>'error',
+        'type' => 'error',
         'message' => $msg
     ];
 }

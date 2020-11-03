@@ -8,7 +8,7 @@ function loaderView($viewName, $params = array()) {
 
     if(count($params) > 0) {
         foreach($params as $key => $value) {
-            if(strlen($key)>0) {
+            if(strlen($key) > 0) {
                 ${$key} = $value;
             }
         }
@@ -20,7 +20,7 @@ function loaderTemplateView($viewName, $params = array()) {
 
     if(count($params) > 0) {
         foreach($params as $key => $value) {
-            if(strlen($key)>0) {
+            if(strlen($key) > 0) {
                 ${$key} = $value;
             }
         }

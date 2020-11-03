@@ -1,12 +1,12 @@
 <?php
 
-function getDateAsDateTime($date){
+function getDateAsDateTime($date) {
     return is_string($date) ? new DateTime($date) : $date;
 }
 
 function isWeekend($date) {
     $inputDate = getDateAsDateTime($date);
-    return $inputDate->format('N') >=6;
+    return $inputDate->format('N') >= 6;
 }
 
 function isBefore($data1, $data2){
@@ -15,7 +15,7 @@ function isBefore($data1, $data2){
     return $inputData1 <= $inputData2;
 }
 
-function getNextDay ($date) {
+function getNextDay($date) {
     $inputDate = getDateAsDateTime($date);
     $inputDate->modify('+1 day');
     return $inputDate;
@@ -39,18 +39,18 @@ function getDateFromInterval($interval) {
     return new DateTimeImmutable($interval->format('%H:%i:%s'));
 }
 
-function getDateFromString($str){
+function getDateFromString($str) {
     return DateTimeImmutable::createFromFormat('H:i:s', $str);
 }
 
 function getFirstDayOfMonth($date) {
     $time = getDateAsDateTime($date)->getTimestamp();
-    return new dateTime(date('Y-m-1', $time));
+    return new DateTime(date('Y-m-1', $time));
 }
 
 function getLastDayOfMonth($date) {
     $time = getDateAsDateTime($date)->getTimestamp();
-    return new dateTime(date('Y-m-t', $time));
+    return new DateTime(date('Y-m-t', $time));
 }
 
 function getSecondsFromDateInterval($interval) {
